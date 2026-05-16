@@ -1,0 +1,29 @@
+{
+  "session_id": "mv-session-sample",
+  "user_prompt": "What architecture should we use for a multi-agent research audit engine?",
+  "history": [
+    {
+      "cycle": 1,
+      "consensus_count": 2,
+      "conflict_count": 4,
+      "log_summary": "Independent discovery complete."
+    },
+    {
+      "cycle": 2,
+      "consensus_count": 4,
+      "conflict_count": 2,
+      "log_summary": "Peer review found architecture consensus and API reliability conflicts."
+    },
+    {
+      "cycle": 3,
+      "consensus_count": 6,
+      "conflict_count": 1,
+      "log_summary": "Final synthesis resolved most conflicts."
+    }
+  ],
+  "final_report": {
+    "title": "MetaVista Verified Intelligence Audit",
+    "content": "# Sample Report\n\nThis is a sample output.",
+    "links": []
+  }
+}
