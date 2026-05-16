@@ -8,7 +8,7 @@ from core.agents import (
     run_master_synthesizer,
     run_peer_review,
 )
-from core.contracts import AuditCycle, FinalReport, MetaVistaSession
+from core.contracts import AgentResult, AuditCycle, FinalReport, MetaVistaSession
 from core.router import ModelRouter
 from core.utils import new_session_id, save_json
 
@@ -27,17 +27,17 @@ async def run_metavista_audit(user_prompt: str) -> MetaVistaSession:
 
     peer_review = await run_peer_review(
         user_prompt=user_prompt,
-        optimist=optimist_result.content,
-        skeptic=skeptic_result.content,
+        brief_a=optimist_result.content,
+        brief_b=skeptic_result.content,
         client=peer_client,
         mock=settings.should_mock,
     )
 
     final_result = await run_master_synthesizer(
         user_prompt=user_prompt,
-        optimist=optimist_result.content,
-        skeptic=skeptic_result.content,
-        peer_review=peer_review,
+        brief_a=optimist_result.content,
+        brief_b=skeptic_result.content,
+        critique=peer_review.critique_text,
         client=synthesis_client,
         mock=settings.should_mock_final,
     )
@@ -72,7 +72,23 @@ async def run_metavista_audit(user_prompt: str) -> MetaVistaSession:
             content=final_result.content,
             links=[],
         ),
-        agent_outputs=[optimist_result, skeptic_result, final_result],
+        agent_outputs=[
+            AgentResult(
+                role='expansive_optimist',
+                title='Expansive Optimist Report',
+                content=optimist_result.content,
+            ),
+            AgentResult(
+                role='defensive_skeptic',
+                title='Defensive Skeptic Report',
+                content=skeptic_result.content,
+            ),
+            AgentResult(
+                role='master_synthesizer',
+                title='MetaVista Verified Intelligence Audit',
+                content=final_result.content,
+            ),
+        ],
     )
 
     save_json('data/last_session.json', session.model_dump())
