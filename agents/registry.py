@@ -1,6 +1,20 @@
 from .base import AgentSpec
 
 
+# ---------------------------------------------------------------------------
+# Async LLM runner – shared by all agents that support real API calls
+# ---------------------------------------------------------------------------
+
+async def _llm_run(client, system_prompt: str, user_prompt: str) -> str:
+    """Default async runner: delegates to client.chat()."""
+    return await client.chat(system_prompt, user_prompt)
+
+
+# ---------------------------------------------------------------------------
+# Mock runners (used when no API keys are available)
+# ---------------------------------------------------------------------------
+
+
 def _extractor(topic, role, prompt, depth):
     return f"""## Information Extraction Agent
 
@@ -105,8 +119,9 @@ AGENT_REGISTRY = {
         "EX",
         "Extracts requirements, entities, assumptions, and constraints.",
         ("extract", "analyze", "research", "summarize", "compare"),
-        "Extract structured information.",
+        "You are an Information Extraction Agent. Your job is to extract structured information from the user's query: identify requirements, entities, assumptions, constraints, and expected outputs. Separate evidence-backed claims from reasoning. Prepare clean sections for synthesis.",
         _extractor,
+        llm_runner=_llm_run,
     ),
 
     "reference": AgentSpec(
@@ -115,8 +130,9 @@ AGENT_REGISTRY = {
         "RF",
         "Plans references, citations, and evidence quality.",
         ("reference", "citation", "source", "paper", "evidence", "latest"),
-        "Plan evidence and citations.",
+        "You are a Reference and Evidence Agent. Your job is to plan references, citations, and evidence quality. Prefer official docs, primary sources, and research papers. Mark unsupported claims clearly. Use citations for current facts, laws, prices, model specs, and benchmarks. Separate verified evidence from assumptions.",
         _reference,
+        llm_runner=_llm_run,
     ),
 
     "table": AgentSpec(
@@ -125,8 +141,9 @@ AGENT_REGISTRY = {
         "TB",
         "Creates tables, matrices, and decision grids.",
         ("table", "compare", "matrix", "pros", "cons", "decision"),
-        "Create structured tables.",
+        "You are a Tables and Comparison Agent. Your job is to create structured tables, matrices, and decision grids that clarify the research findings. Suggest comparison tables, evidence quality matrices, risk tables, and recommendation tables.",
         _table,
+        llm_runner=_llm_run,
     ),
 
     "visual": AgentSpec(
@@ -135,8 +152,9 @@ AGENT_REGISTRY = {
         "VG",
         "Suggests graphs, diagrams, images, and visual outputs.",
         ("graph", "chart", "image", "diagram", "visual", "architecture", "workflow"),
-        "Suggest useful visuals.",
+        "You are a Visuals and Graph Agent. Your job is to suggest useful graphs, diagrams, images, and visual outputs that would clarify the research findings. Recommend workflow diagrams, contribution charts, telemetry charts, and tables.",
         _visual,
+        llm_runner=_llm_run,
     ),
 
     "skeptic": AgentSpec(
@@ -145,8 +163,9 @@ AGENT_REGISTRY = {
         "SK",
         "Finds weak assumptions, gaps, risks, and overclaims.",
         ("risk", "validate", "review", "critique", "deep", "advanced"),
-        "Critique the work.",
+        "You are a Skeptical Review Agent. Your job is to find weak assumptions, gaps, risks, and overclaims in the research. Identify hallucination risks, scaling bottlenecks, API dependencies, latency constraints, and cost concerns. Propose safeguards.",
         _skeptic,
+        llm_runner=_llm_run,
     ),
 
     "synthesizer": AgentSpec(
@@ -155,8 +174,9 @@ AGENT_REGISTRY = {
         "MS",
         "Combines all agent outputs into the final report.",
         ("report", "final", "synthesis", "recommend", "deep", "advanced"),
-        "Synthesize final answer.",
+        "You are the Master Synthesis Agent. Your job is to combine all agent outputs into a final polished research report. Include executive summary, task framing, activated agents, specialist findings, evidence gaps, tables/visual suggestions, and final recommendation. Preserve caveats and separate facts from recommendations.",
         _synthesizer,
+        llm_runner=_llm_run,
     ),
 }
 
