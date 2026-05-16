@@ -1,49 +1,15 @@
 {
-  "session_id": "mv-session-1778960354",
-  "user_prompt": "How does the regular use of social media algorithms impact the attention spans of adolescents aged 13 to 16? Furthermore, what specific structural changes in online content most directly contribute to this psychological shift?",
-  "history": [
-    {
-      "cycle": 1,
-      "consensus_count": 2,
-      "conflict_count": 4,
-      "log_summary": "Independent discovery complete. Optimist and Skeptic created separate briefs."
-    },
-    {
-      "cycle": 2,
-      "consensus_count": 4,
-      "conflict_count": 2,
-      "log_summary": "Both agents agree on starting with a modular MVP, but the skeptic flags API reliability and overbuilding risk."
-    },
-    {
-      "cycle": 3,
-      "consensus_count": 6,
-      "conflict_count": 1,
-      "log_summary": "Final synthesis complete. Conflicts were resolved or explicitly preserved as caveats."
-    }
+  "session_id": "mv-1778971590",
+  "topic": "",
+  "acting_lens": "Bicycle rider",
+  "research_depth": "Medium Research",
+  "user_prompt": "Im looking to buy an ebike . i want to use it for leasure but also for grocery runs, and going with my daughter behind me (same bike) for rides at the park .research options and recommend what i could buy. price is important but also good quality.",
+  "activated_agents": [
+    "Information Extraction Agent",
+    "Master Synthesis Agent",
+    "Skeptical Review Agent",
+    "Reference and Evidence Agent"
   ],
-  "final_report": {
-    "title": "MetaVista Verified Intelligence Audit",
-    "content": "# MetaVista Verified Research Report: MVP Plan\n\n## 1. Executive Summary\nThe safest path is to build a small Streamlit-based multi-agent audit engine with mock fallback, Qwen-style critique agents, and a Z.ai-style final synthesis layer.\n\n## 2. Comprehensive Deep Dive\nStart with clear separation of concerns: UI, workflow, contracts, prompts, clients, and routing. Run the optimist and skeptic agents in parallel, compare them with a peer-review JSON step, then synthesize a final Markdown report.\n\n## 3. Audit Trail\nConsensus: 4. Conflicts: 2. Both agents agree on starting with a modular MVP, but the skeptic flags API reliability and overbuilding risk.\n\n## 4. Verified Reference Links\nNo live external references were used in this MVP run.",
-    "links": []
-  },
-  "agent_outputs": [
-    {
-      "role": "expansive_optimist",
-      "title": "Expansive Optimist",
-      "content": "Broad discovery: The problem should be decomposed into goals, users, constraints, available data, success metrics, and implementation steps. A strong solution should start with a simple MVP, then add routing, evaluation, persistence, and live sources later.",
-      "model_used": "mock"
-    },
-    {
-      "role": "defensive_skeptic",
-      "title": "Defensive Skeptic",
-      "content": "Risk audit: Watch for unsupported claims, vague success metrics, hidden API costs, latency limits, poor JSON parsing, missing fallbacks, and over-complex architecture. Any viable answer should work without external APIs during demos.",
-      "model_used": "mock"
-    },
-    {
-      "role": "master_synthesizer",
-      "title": "Master Synthesizer",
-      "content": "# MetaVista Verified Research Report: MVP Plan\n\n## 1. Executive Summary\nThe safest path is to build a small Streamlit-based multi-agent audit engine with mock fallback, Qwen-style critique agents, and a Z.ai-style final synthesis layer.\n\n## 2. Comprehensive Deep Dive\nStart with clear separation of concerns: UI, workflow, contracts, prompts, clients, and routing. Run the optimist and skeptic agents in parallel, compare them with a peer-review JSON step, then synthesize a final Markdown report.\n\n## 3. Audit Trail\nConsensus: 4. Conflicts: 2. Both agents agree on starting with a modular MVP, but the skeptic flags API reliability and overbuilding risk.\n\n## 4. Verified Reference Links\nNo live external references were used in this MVP run.",
-      "model_used": "mock"
-    }
-  ]
+  "final_report": "# MetaVista Advanced Research Report\n\n## Executive Summary\nThis report was generated through a modular multi-agent workflow. The system assessed the prompt, activated relevant specialist agents, collected outputs, reviewed risks, and synthesized a detailed research-style answer.\n\n**Topic:** Not provided  \n**Acting Lens:** Bicycle rider  \n**Research Depth:** Medium Research\n\n## User Prompt\nIm looking to buy an ebike . i want to use it for leasure but also for grocery runs, and going with my daughter behind me (same bike) for rides at the park .research options and recommend what i could buy. price is important but also good quality.\n\n## Activated Workflow\n1. Assess the prompt.\n2. Select relevant agents.\n3. Run specialist agents.\n4. Review assumptions and evidence gaps.\n5. Synthesize final report.\n6. Generate downloadable PDF if enabled.\n\n## Specialist Findings\n### EX Information Extraction Agent\n## Information Extraction Agent\n\n**Topic:** Not provided\n**Acting Lens:** Bicycle rider\n**Depth:** Medium Research\n\n### Extracted Task\n- Main request: Im looking to buy an ebike . i want to use it for leasure but also for grocery runs, and going with my daughter behind me (same bike) for rides at the park .research options and recommend what i could buy. price is important but also good quality.\n- Required output: advanced research-style answer\n- Needs: structure, evidence awareness, recommendations, and final report readiness.\n\n### Decomposition\n1. Understand the task.\n2. Identify facts, assumptions, constraints, and expected outputs.\n3. Separate evidence-backed claims from reasoning.\n4. Prepare clean sections for synthesis.\n\n\n### MS Master Synthesis Agent\n## Master Synthesis Agent\n\nThe final output should be a polished advanced report with:\n- executive summary\n- task framing\n- activated agents\n- specialist findings\n- evidence gaps\n- tables/visual suggestions\n- final recommendation\n\nTone: Bicycle rider\nDepth: Medium Research\n\n\n### SK Skeptical Review Agent\n## Skeptical Review Agent\n\n### Risks\n- Multi-agent output can still hallucinate.\n- PDF formatting can make weak research look authoritative.\n- Deep research may become slow or expensive.\n- Agents may duplicate each other unless prompts are distinct.\n\n### Safeguards\n1. Router chooses only relevant agents.\n2. Reference agent flags unsupported claims.\n3. Synthesizer preserves caveats.\n4. Final report separates facts from recommendations.\n\n\n### RF Reference and Evidence Agent\n## Reference and Evidence Agent\n\n### Evidence Strategy\n- Prefer official docs, primary sources, research papers, and credible technical references.\n- Mark unsupported claims clearly.\n- Use citations for current facts, laws, prices, model specs, and benchmarks.\n- Separate verified evidence from assumptions.\n\n### Citation Plan\n| Claim Type | Source Type | Rule |\n|---|---|---|\n| Definition | official docs/textbook | cite once |\n| Current fact | recent web source | cite every claim |\n| Technical claim | docs/paper | cite version/date |\n| Recommendation | source + reasoning | state assumptions |\n\n\n## Final Recommendation\nKeep the system registry-based. Each new agent should be added inside `agents/registry.py` with an ID, name, keywords, system prompt, and runner. The orchestrator should only select and call registered agents so future expansion remains simple.\n\n## Caveats\nThis implementation gives you the architecture and UI flow. For production-grade references, connect the Reference Agent to live web search, PDFs, papers, or internal document stores.\n",
+  "pdf_path": "reports/metavista_report_20260516_154630.pdf"
 }
